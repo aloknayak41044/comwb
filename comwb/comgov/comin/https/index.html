@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hamba hamba</title>
+    <style>
+        /* Base Setup - Centering the Main Button */
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;       
+            justify-content: center;    
+            font-family: sans-serif;
+            transition: background-color 0.2s;
+            overflow: hidden;
+        }
+
+        /* Light Mode Switch */
+        body.light-mode {
+            background-color: #ffffff;
+        }
+
+        /* Toggle Button - Top Right Corner */
+        #toggle {
+            position: fixed; 
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1000;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #333;
+            color: #fff;
+        }
+
+        /* CLICK ME!!! Button - Center of Screen */
+        #surpriseBtn {
+            padding: 30px 60px;
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            border-radius: 60px;
+            transition: all 0.2s;
+            z-index: 10;
+            
+            /* Default: White button for Dark Mode */
+            background-color: #ffffff;
+            color: #000000;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Light Mode Overrides for Button */
+        body.light-mode #surpriseBtn {
+            /* Black button for Light Mode */
+            background-color: #000000;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode #toggle {
+            background: #eee;
+            color: #000;
+            border-color: #ccc;
+        }
+
+        /* Video fills the screen completely */
+        video {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+    </style>
+</head>
+<body id="page-body">
+
+    <button id="toggle" onclick="toggleMode()">Toggle Mode</button>
+
+    <button id="surpriseBtn" onclick="revealSurprise()">CLICK ME!!!</button>
+
+    <video id="hambaVideo" loop playsinline>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <script>
+        function toggleMode() {
+            document.getElementById("page-body").classList.toggle("light-mode");
+        }
+
+        function revealSurprise() {
+            const video = document.getElementById('hambaVideo');
+            const btn = document.getElementById('surpriseBtn');
+            const toggle = document.getElementById('toggle');
+            const body = document.getElementById('page-body');
+
+            // 1. Hide the UI instantly
+            btn.style.display = 'none';
+            toggle.style.display = 'none';
+            
+            // 2. Kill the Light Mode (Reset to black background for video)
+            body.classList.remove('light-mode');
+            body.style.backgroundColor = '#000000';
+
+            // 3. Play the video with sound
+            video.style.display = 'block';
+            video.muted = false;
+            video.volume = 1.0;
+            video.play();
+        }
+    </script>
+</body>
+</html>

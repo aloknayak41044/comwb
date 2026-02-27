@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COMWB</title>
+    <style>
+        body {
+            background-color: #000000; /* Dark Background */
+            color: #ffffff;            /* Light Text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;       /* Centers horizontally */
+            justify-content: center;    /* Centers vertically */
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        /* Bold, Italic, Underlined Link */
+        a {
+            font-weight: bold;
+            font-style: italic;
+            text-decoration: underline;
+            display: block; /* Makes the 1cm gap possible */
+            margin-top: 1cm; /* This creates the gap between links */
+        }
+
+        /* The Toggle Button (Top Right) */
+        #toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        /* Light Mode Overrides */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body id="page-body">
+
+    <button id="toggle" onclick="toggleMode()">Toggle Mode</button>
+
+    <p>Hello, please click on https.</p>
+    <a href="/https/" class="special-link">https</a>
+
+    <script>
+        function toggleMode() {
+            document.getElementById("page-body").classList.toggle("light-mode");
+        }
+    </script>
+</body>
+</html>
